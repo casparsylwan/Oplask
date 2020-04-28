@@ -1,2 +1,2 @@
 ###Agil methods
-By Caspar Sylwa
+By Caspar Sylwan
