@@ -27,7 +27,7 @@ let counter=1;
 
 searchBtn.addEventListener("click", function(){
     this.counter = 1;
-//    console.log(document.querySelector(".main-search").value);
+
     pageChange();
 });
 
@@ -58,27 +58,25 @@ function pageChange() {
         url = baseurl + key + query + keyWord + page + counter;
     }
     
-    //console.log(url);
-    // keyWord = document.querySelector(".main-search").value;
+  
     photoContainer.innerHTML = "";
 
-    //caching.forEach(cach => console.log(cach.url));
+    
 
     let reduced = [];
     caching.forEach(cash =>{
         if(cash.url==url){
             reduced.push(cash);
-        //    console.log(cash);
+        
         }
     });
 
 
-//    console.log(reduced);
-//    console.log(caching);
+
 
     if(reduced.length > 0){
         console.log("succes")
-    //    console.log(reduced[0].data.results);
+    
         navVisibility(reduced[0].data);
         reduced[0].data.results.forEach(photo => photoAdder(photo));
 
@@ -92,7 +90,7 @@ function pageChange() {
 
                 //caching
                 caching.push({url:url, data:data});
-            //    console.log(caching); 
+            
         
                 navVisibility(data);
                  
@@ -131,9 +129,7 @@ function pageChange() {
                navUp.style.visibility = "hidden";
             }
 
-            // //caching
-            // caching.push({url:url, data:data.results});
-            // console.log(caching); 
+           
         }
 
         //Adding photos
