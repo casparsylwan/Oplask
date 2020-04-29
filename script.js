@@ -2,8 +2,9 @@
 //Variables
 const searchBtn = document.querySelector(".btn");
 const photoContainer = document.getElementById("photo-container");
-const keyWord = document.querySelector(".main-search").value;
-const main = document.querySelector("main")
+let main = document.querySelector("main");
+const overlay = document.getElementById("overlay");
+const lightboxContainer = document.querySelector(".lightbox-container");
 
 //Key unsplash
 let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8";
@@ -17,14 +18,31 @@ let counter=1;
 //EventListenrs
 searchBtn.addEventListener("click", function () {
 
+    let keyWord = document.querySelector(".main-search").value;
     let url = baseurl + key + query + keyWord + page + counter;
-    console.log(counter++);
+    //console.log(counter++);
+    document.getElementById("photo-container").innerHTML="";
+    keyWord = document.querySelector(".main-search").value;
+    // Fetch Data img
+    fetch(url).then(function (data) { 
+        console.log(data);
+        return data.json();
+    }).then(function (data){  
+                console.log(data)               
+                 data.results.forEach( photo => {
+                 console.log("hej");   
+                let divPhoto = document.createElement("div");
+                 divPhoto.setAttribute("class", "photo");
+                let nextImage = document.createElement("img");
+                 nextImage.setAttribute("id", photo.id);
+                 nextImage.setAttribute("src", photo.urls.thumb);
+                 divPhoto.append(nextImage);
+                 $("#photo-container").append(divPhoto);
 
-
-
-});
-
-
+             });
+            });
+        });
+        
 
 
 // const searchBtn = document.querySelector(".btn"); // Done
@@ -36,10 +54,10 @@ searchBtn.addEventListener("click", function () {
     
 //     let url = "https://api.unsplash.com/search/photos/?client_id=" + key + "&query=" + keyWord+"&page=" + counter; //Done
 
-//     // let main = document.querySelector("main")
-//     let overlay = document.getElementById("overlay")
-//     let lightboxContainer = document.querySelector(".lightbox-container")
-//     document.getElementById("photo-container").innerHTML=""
+//     // let main = document.querySelector("main") //Done
+//     let overlay = document.getElementById("overlay") //Done
+//     let lightboxContainer = document.querySelector(".lightbox-container"); //Done
+//     document.getElementById("photo-container").innerHTML="" //Done
 
 
 
