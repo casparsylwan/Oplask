@@ -39,7 +39,7 @@ searchBtn.addEventListener("click", function () {
                     lightboxContainer.style.display = "flex"
                     lightboxContainer.innerHTML =
                         `<div class="options">
-                            <span class="download">Ladda Ner </span>
+                            <a class="download" href=${photo.links.download}?force=true>Ladda Ner </a>
                             <span class="favorites">Lägg till Favoriter</span>
                         </div>
                         <img src=${photo.urls.small}>
