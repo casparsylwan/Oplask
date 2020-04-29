@@ -47,24 +47,24 @@ document.querySelector("main").innerHTML += `<img src=${example.urls.thumb}>`
 let image = document.querySelector("img")
 let overlay = document.getElementById("overlay")
 let author = example.user
+let imageContainer =document.querySelector(".image-container")
 
 image.addEventListener("click", event => {
-
-    overlay.style.display = "flex"
-    document.querySelector(".image-container").innerHTML = 
-    `<div class="download">Download Now</div>
-    <img src=${example.urls.small}>
-    <div class="author">
-        <img class="author-icon" src=${author.profile_image.small}> 
-        ${author.name}
-    </div>`
-    
-    
-
+    overlay.style.display = "block"
+    imageContainer.style.display = "flex"
+    imageContainer.innerHTML = 
+        `<div class="options">
+            <span class="download">Ladda Ner </span>
+            <span class="favorites">Lägg till Favoriter</span>
+        </div>
+        <img src=${example.urls.small}>
+        <div class="author">
+            <img class="author-icon" src=${author.profile_image.small}> 
+            ${author.name}
+        </div>`
 })
 
 overlay.addEventListener("click", event => {
-
+    imageContainer.style.display = "none"
     overlay.style.display = "none"
-
 })
