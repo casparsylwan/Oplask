@@ -91,6 +91,7 @@ header {
 
 .author, .download, .favorites {
 	/* position: relative; */
+	padding-top: 1rem;
 	padding-bottom: 0.5rem;
 	font-size: 1.5rem;
 }
@@ -109,6 +110,22 @@ main {
 	display: grid;
 	justify-content: center;
 	gap: 40px;
+}
+
+.photo:hover{
+	cursor: zoom-in;
+}
+
+.star-icon{
+	font-size: 3rem;
+
+	-webkit-text-fill-color: white; 
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+}
+
+.favorites:hover, #home:hover, #fav:hover{
+	cursor: pointer;
 }
 
 .options{
