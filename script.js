@@ -9,6 +9,8 @@ let navDown = document.querySelector(".nav-down");
 const overlay = document.getElementById("overlay");
 const lightboxContainer = document.querySelector(".lightbox-container");
 
+
+
 //Cashing variables
 caching = [];
 
@@ -24,6 +26,7 @@ let keyWord = " ";
 let counter=1;
 
 //EventListenrs
+
 
 searchBtn.addEventListener("click", function(){
     this.counter = 1;
@@ -42,7 +45,7 @@ navDown.addEventListener("click", function(){
 });
 
 
-
+//Main search function
 function pageChange() {
 
     let keyWord = document.querySelector(".main-search").value;
@@ -57,11 +60,8 @@ function pageChange() {
 
         url = baseurl + key + query + keyWord + page + counter;
     }
-    
-  
+      
     photoContainer.innerHTML = "";
-
-    
 
     let reduced = [];
     caching.forEach(cash =>{
@@ -70,9 +70,6 @@ function pageChange() {
         
         }
     });
-
-
-
 
     if(reduced.length > 0){
         console.log("succes")
@@ -90,14 +87,14 @@ function pageChange() {
 
                 //caching
                 caching.push({url:url, data:data});
-            
-        
+                    
                 navVisibility(data);
                  
                  // Adding photos to the list!
                  data.results.forEach( photo => {
                            
                     photoAdder(photo);
+                    enLagePhoto(photo);
 
                 })
             })
@@ -117,8 +114,6 @@ function pageChange() {
                navDown.style.visibility = "hidden";
                navUp.style.visibility = "visible";
 
-              
-
             }else if(counter>1 && counter<data.total_pages){
                 navDown.style.visibility = "visible";
                 navUp.style.visibility = "visible";
@@ -127,10 +122,9 @@ function pageChange() {
 
                navDown.style.visibility = "visible";
                navUp.style.visibility = "hidden";
-            }
-
-           
+            }           
         }
+
 
         //Adding photos
         function photoAdder(photo){
@@ -143,6 +137,54 @@ function pageChange() {
             divPhoto.append(nextImage);
             $("#photo-container").append(divPhoto);
 
+        }
+
+        //Add Largephoto
+        function enLagePhoto(photo){
+                    document.getElementById(photo.id).addEventListener("click", event => {
+                    overlay.style.display = "block"
+                    lightboxContainer.style.display = "flex"
+                
+                    lightboxContainer.innerHTML =
+                         `<div class="options">
+                             <button class="btn download">Ladda Ner </button>
+                             <button class="btn favorites">Lägg till Favoriter</button>
+                         </div>
+                        
+                        <img src=${photo.urls.small}>
+                        <div class="author">
+                        <img class="author-icon" src=${photo.user.profile_image.small}> 
+                    ${photo.user.name}
+                    </div>`
+                        });
+                   
+
+                        overlay.addEventListener("click", event => {
+                            lightboxContainer.style.display = "none"
+                            overlay.style.display = "none";
+                            })
+                    }
+
+        //LocalStorage
+
+        function addToFavorite(name, photo){
+
+            localStorage.setItem( name,  photo );
+        }
+
+        function getFavoriteItem(name){
+
+           return localStorage.getItem(name);             
+        }
+
+        function removeFromFavorite(name){
+
+            localStorage.removeItem(name);
+        }
+
+        function removeAll(){
+
+            localStorage.clear();
         }
 
         
