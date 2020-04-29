@@ -3,6 +3,9 @@
 const searchBtn = document.querySelector(".btn");
 const photoContainer = document.getElementById("photo-container");
 let main = document.querySelector("main");
+let btnBox = document.querySelector(".btn-box");
+let navUp = document.querySelector(".nav-up");
+let navDown = document.querySelector(".nav-down");
 const overlay = document.getElementById("overlay");
 const lightboxContainer = document.querySelector(".lightbox-container");
 
@@ -13,35 +16,94 @@ let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8";
 let baseurl = "https://api.unsplash.com/search/photos/?client_id=";
 let query = "&query=";
 let page = "&page=";
+let keyWord = " ";
 let counter=1;
 
 //EventListenrs
-searchBtn.addEventListener("click", function () {
+
+searchBtn.addEventListener("click", function(){
+    this.counter = 1;
+    console.log(document.querySelector(".main-search").value);
+    pageChange();
+});
+
+navUp.addEventListener("click", function(){
+    counter ++;
+    pageChange();
+});
+
+navDown.addEventListener("click", function(){
+    counter --;
+    pageChange();
+});
+
+
+
+function pageChange() {
 
     let keyWord = document.querySelector(".main-search").value;
-    let url = baseurl + key + query + keyWord + page + counter;
-    //console.log(counter++);
-    document.getElementById("photo-container").innerHTML="";
+    let url;
+    
+    //Default search is stockholm if nothing is choosen!
+    if(keyWord===""){
+
+        url = url = baseurl + key + query + "stockholm" + page + counter;
+
+    }else{
+
+        url = baseurl + key + query + keyWord + page + counter;
+    }
+    
+    console.log(url);
     keyWord = document.querySelector(".main-search").value;
+    photoContainer.innerHTML = "";
+
     // Fetch Data img
     fetch(url).then(function (data) { 
-        console.log(data);
+        
         return data.json();
     }).then(function (data){  
-                console.log(data)               
-                 data.results.forEach( photo => {
-                 console.log("hej");   
-                let divPhoto = document.createElement("div");
-                 divPhoto.setAttribute("class", "photo");
-                let nextImage = document.createElement("img");
-                 nextImage.setAttribute("id", photo.id);
-                 nextImage.setAttribute("src", photo.urls.thumb);
-                 divPhoto.append(nextImage);
-                 $("#photo-container").append(divPhoto);
+                 
+                  //Navigations buttons visability depending on results!
+                 if(data.total_pages<10){
 
-             });
-            });
-        });
+                     navDown.style.visibility = "hidden";
+                     navUp.style.visibility = "hidden";
+                    
+                 }else if(counter===1){
+
+                    navDown.style.visibility = "hidden";
+                    navUp.style.visibility = "visible";
+
+                   
+
+                 }else if(counter>1 && counter<data.total_pages){
+                     navDown.style.visibility = "visible";
+                     navUp.style.visibility = "visible";
+
+                 }else{
+
+                    navDown.style.visibility = "visible";
+                    navUp.style.visibility = "hidden";
+                 }
+                 // Adding photos to the list!
+                 data.results.forEach( photo => {
+       
+                    let divPhoto = document.createElement("div");
+                    divPhoto.setAttribute("class", "photo");
+                    let nextImage = document.createElement("img");
+                    nextImage.setAttribute("id", photo.id);
+                    nextImage.setAttribute("src", photo.urls.thumb);
+                    divPhoto.append(nextImage);
+                    $("#photo-container").append(divPhoto);
+
+                })
+            })
+        };
+
+        
+        
+
         
 
 

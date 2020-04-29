@@ -107,6 +107,9 @@ header {
 
 main {
 	margin: 2rem 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #photo-container {
@@ -121,4 +124,19 @@ main {
 	flex-direction: row;
 	justify-content: space-between;
 	
+}
+
+.btn{
+	margin-top: 1rem;
+	font-weight: bolder;
+	
+}
+
+.nav-up{
+	visibility:hidden;
+	margin-right: 1rem;
+}
+
+.nav-down{
+	visibility:hidden;
 }
