@@ -70,3 +70,13 @@ header {
     text-decoration: none;
 
 }
+
+main {
+	margin: 2rem 0;
+}
+
+#photo-container {
+	display: grid;
+	justify-content: center;
+	gap: 40px;
+}
