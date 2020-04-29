@@ -1,16 +1,4 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -18,58 +6,100 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
+
 ol, ul {
 	list-style: none;
 }
+
 blockquote, q {
 	quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+
+blockquote:before, blockquote:after, q:before, q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
 
 #search-icon {
-    width: 2rem;
-    height: 2rem;
+	width: 2rem;
+	height: 2rem;
 }
 
 header {
-    background: rgb(250, 247, 247);
+	background: rgb(250, 247, 247);
 }
 
 .nav-top {
-    display: flex;
-    padding: 1rem 1rem 0 1rem;
+	display: flex;
+	padding: 1rem 1rem 0 1rem;
 }
 
 .links {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 1rem;
+	display: flex;
+	justify-content: space-evenly;
+	padding: 1rem;
 }
 
 .links li {
-    list-style: none;
+	list-style: none;
 }
 
-.links li a{
-    text-decoration: none;
-
+.links li a {
+	text-decoration: none;
 }
+
+#overlay {
+	position: fixed;
+	display: none;
+	background-color: rgba(0, 0, 0, 0.575);
+	cursor: pointer;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.lightbox-container {
+	position: fixed;
+	display: none;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	padding: 3rem;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.author, .download, .favorites {
+	/* position: relative; */
+	padding-bottom: 0.5rem;
+	font-size: 1.5rem;
+}
+
+.author-icon {
+	border-radius: 50%;
+}
+
+
 
 main {
 	margin: 2rem 0;
@@ -79,4 +109,12 @@ main {
 	display: grid;
 	justify-content: center;
 	gap: 40px;
+}
+
+.options{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	
 }

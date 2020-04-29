@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oplask</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
     <div class="wrapper">
         <header>
             <nav class="nav-header">
                 <div class="nav-top">
                     <div class="unsplash-icon">
-                        <svg id="search-icon" xmlns='http://www.w3.org/2000/svg'  viewBox='0 0 512 512'><title>ionicons-v5-f</title><path d='M221.09,64A157.09,157.09,0,1,0,378.18,221.09,157.1,157.1,0,0,0,221.09,64Z' style='fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:32px'/><line x1='338.29' y1='338.29' x2='448' y2='448' style='fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px'/></svg>
+                        <svg id="search-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'>
+                            <title>ionicons-v5-f</title>
+                            <path d='M221.09,64A157.09,157.09,0,1,0,378.18,221.09,157.1,157.1,0,0,0,221.09,64Z'
+                                style='fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:32px' />
+                            <line x1='338.29' y1='338.29' x2='448' y2='448'
+                                style='fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px' />
+                        </svg>
                     </div>
                     <input class="main-search" type="search" name="searchKeyword" placeholder="Sök bild">
                     <button class="btn main-search">SÖK</button>
@@ -28,9 +36,11 @@
         </header>
         <main>
             <div id="photo-container"></div>
+            <div id="overlay"></div>
+            <div class="lightbox-container"></div>
         </main>
     </div>
-    
+
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="script.js"></script>
