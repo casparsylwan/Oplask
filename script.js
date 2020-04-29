@@ -1,16 +1,16 @@
 const searchBtn = document.querySelector(".btn");
 // const CONTAINER = document.getElementById("photo-container");
-
+let counter=1;
 searchBtn.addEventListener("click", function () {
     let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8";
     let keyWord = document.querySelector(".main-search").value;
-    let counter=820;
+    
     let url = "https://api.unsplash.com/search/photos/?client_id=" + key + "&query=" + keyWord+"&page=" + counter;
 
     // let main = document.querySelector("main")
     let overlay = document.getElementById("overlay")
     let lightboxContainer = document.querySelector(".lightbox-container")
-
+    document.getElementById("photo-container").innerHTML=""
     fetch(url)
         .then(function (data) {
             return data.json();
@@ -18,6 +18,7 @@ searchBtn.addEventListener("click", function () {
         })
         .then(function (data) {
             console.log(data);
+            
             data.results.forEach(photo => {
                 // let result = `
                 //     <div class="photo">
