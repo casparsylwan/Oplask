@@ -9,6 +9,10 @@ let navDown = document.querySelector(".nav-down");
 const overlay = document.getElementById("overlay");
 const lightboxContainer = document.querySelector(".lightbox-container");
 
+//Cashing variables
+caching = [];
+
+
 //Key unsplash
 let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8";
 
@@ -23,7 +27,7 @@ let counter=1;
 
 searchBtn.addEventListener("click", function(){
     this.counter = 1;
-    console.log(document.querySelector(".main-search").value);
+//    console.log(document.querySelector(".main-search").value);
     pageChange();
 });
 
@@ -43,7 +47,7 @@ function pageChange() {
 
     let keyWord = document.querySelector(".main-search").value;
     let url;
-    
+
     //Default search is stockholm if nothing is choosen!
     if(keyWord===""){
 
@@ -54,55 +58,105 @@ function pageChange() {
         url = baseurl + key + query + keyWord + page + counter;
     }
     
-    console.log(url);
-    keyWord = document.querySelector(".main-search").value;
+    //console.log(url);
+    // keyWord = document.querySelector(".main-search").value;
     photoContainer.innerHTML = "";
+
+    //caching.forEach(cach => console.log(cach.url));
+
+    let reduced = [];
+    caching.forEach(cash =>{
+        if(cash.url==url){
+            reduced.push(cash);
+        //    console.log(cash);
+        }
+    });
+
+
+//    console.log(reduced);
+//    console.log(caching);
+
+    if(reduced.length > 0){
+        console.log("succes")
+    //    console.log(reduced[0].data.results);
+        navVisibility(reduced[0].data);
+        reduced[0].data.results.forEach(photo => photoAdder(photo));
+
+    }else{
 
     // Fetch Data img
     fetch(url).then(function (data) { 
         
         return data.json();
-    }).then(function (data){  
+    }).then(function (data){ 
+
+                //caching
+                caching.push({url:url, data:data});
+            //    console.log(caching); 
+        
+                navVisibility(data);
                  
-                  //Navigations buttons visability depending on results!
-                 if(data.total_pages<10){
-
-                     navDown.style.visibility = "hidden";
-                     navUp.style.visibility = "hidden";
-                    
-                 }else if(counter===1){
-
-                    navDown.style.visibility = "hidden";
-                    navUp.style.visibility = "visible";
-
-                   
-
-                 }else if(counter>1 && counter<data.total_pages){
-                     navDown.style.visibility = "visible";
-                     navUp.style.visibility = "visible";
-
-                 }else{
-
-                    navDown.style.visibility = "visible";
-                    navUp.style.visibility = "hidden";
-                 }
                  // Adding photos to the list!
                  data.results.forEach( photo => {
-       
-                    let divPhoto = document.createElement("div");
-                    divPhoto.setAttribute("class", "photo");
-                    let nextImage = document.createElement("img");
-                    nextImage.setAttribute("id", photo.id);
-                    nextImage.setAttribute("src", photo.urls.thumb);
-                    divPhoto.append(nextImage);
-                    $("#photo-container").append(divPhoto);
+                           
+                    photoAdder(photo);
 
                 })
             })
-        };
+        }};
+
+        //nav visibility
+        function navVisibility(data){
+            
+             //Navigations buttons visability depending on results!
+             if(data.total_pages<10){
+
+                navDown.style.visibility = "hidden";
+                navUp.style.visibility = "hidden";
+               
+            }else if(counter===1){
+
+               navDown.style.visibility = "hidden";
+               navUp.style.visibility = "visible";
+
+              
+
+            }else if(counter>1 && counter<data.total_pages){
+                navDown.style.visibility = "visible";
+                navUp.style.visibility = "visible";
+
+            }else{
+
+               navDown.style.visibility = "visible";
+               navUp.style.visibility = "hidden";
+            }
+
+            // //caching
+            // caching.push({url:url, data:data.results});
+            // console.log(caching); 
+        }
+
+        //Adding photos
+        function photoAdder(photo){
+
+            let divPhoto = document.createElement("div");
+            divPhoto.setAttribute("class", "photo");
+            let nextImage = document.createElement("img");
+            nextImage.setAttribute("id", photo.id);
+            nextImage.setAttribute("src", photo.urls.thumb);
+            divPhoto.append(nextImage);
+            $("#photo-container").append(divPhoto);
+
+        }
 
         
-        
+                    // let divPhoto = document.createElement("div");
+                    // divPhoto.setAttribute("class", "photo");
+                    // let nextImage = document.createElement("img");
+                    // nextImage.setAttribute("id", photo.id);
+                    // nextImage.setAttribute("src", photo.urls.thumb);
+                    // divPhoto.append(nextImage);
+                    // $("#photo-container").append(divPhoto);        
 
         
 
