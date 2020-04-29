@@ -80,7 +80,7 @@ header {
 	bottom: 0;
 }
 
-.image-container {
+.lightbox-container {
 	position: fixed;
 	display: none;
 	top: 50%;
@@ -101,6 +101,18 @@ header {
 
 .author-icon {
 	border-radius: 50%;
+}
+
+
+
+main {
+	margin: 2rem 0;
+}
+
+#photo-container {
+	display: grid;
+	justify-content: center;
+	gap: 40px;
 }
 
 .options{
