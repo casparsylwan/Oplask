@@ -4,8 +4,8 @@ const searchBtn = document.querySelector(".btn");
 searchBtn.addEventListener("click", function () {
     let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8";
     let keyWord = document.querySelector(".main-search").value;
-    let counter=3
-    let url = "https://api.unsplash.com/search/photos/?client_id=" + key + "&query=" + keyWord+"?page="+counter;
+    let counter=820;
+    let url = "https://api.unsplash.com/search/photos/?client_id=" + key + "&query=" + keyWord+"&page=" + counter;
 
     // let main = document.querySelector("main")
     let overlay = document.getElementById("overlay")
