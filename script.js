@@ -2,7 +2,8 @@
 //Variables
 const searchBtn = document.querySelector(".btn");
 const photoContainer = document.getElementById("photo-container");
-
+const keyWord = document.querySelector(".main-search").value;
+const main = document.querySelector("main")
 
 //Key unsplash
 let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8";
@@ -13,17 +14,27 @@ let query = "&query=";
 let page = "&page=";
 let counter=1;
 
+//EventListenrs
+searchBtn.addEventListener("click", function () {
+
+    let url = baseurl + key + query + keyWord + page + counter;
+    console.log(counter++);
 
 
 
-// const searchBtn = document.querySelector(".btn");
-// // const CONTAINER = document.getElementById("photo-container");
-// let counter=1;
+});
+
+
+
+
+// const searchBtn = document.querySelector(".btn"); // Done
+// // const CONTAINER = document.getElementById("photo-container"); // Done
+// let counter=1; // Done
 // searchBtn.addEventListener("click", function () {
-//     let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8";
-//     let keyWord = document.querySelector(".main-search").value;
+//     let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8"; //Done
+//     let keyWord = document.querySelector(".main-search").value; //Done
     
-//     let url = "https://api.unsplash.com/search/photos/?client_id=" + key + "&query=" + keyWord+"&page=" + counter;
+//     let url = "https://api.unsplash.com/search/photos/?client_id=" + key + "&query=" + keyWord+"&page=" + counter; //Done
 
 //     // let main = document.querySelector("main")
 //     let overlay = document.getElementById("overlay")
