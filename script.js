@@ -1,60 +1,81 @@
+
+//Variables
 const searchBtn = document.querySelector(".btn");
-// const CONTAINER = document.getElementById("photo-container");
+const photoContainer = document.getElementById("photo-container");
+
+
+//Key unsplash
+let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8";
+
+//Base url
+let baseurl = "https://api.unsplash.com/search/photos/?client_id=";
+let query = "&query=";
+let page = "&page=";
 let counter=1;
-searchBtn.addEventListener("click", function () {
-    let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8";
-    let keyWord = document.querySelector(".main-search").value;
+
+
+
+
+// const searchBtn = document.querySelector(".btn");
+// // const CONTAINER = document.getElementById("photo-container");
+// let counter=1;
+// searchBtn.addEventListener("click", function () {
+//     let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8";
+//     let keyWord = document.querySelector(".main-search").value;
     
-    let url = "https://api.unsplash.com/search/photos/?client_id=" + key + "&query=" + keyWord+"&page=" + counter;
+//     let url = "https://api.unsplash.com/search/photos/?client_id=" + key + "&query=" + keyWord+"&page=" + counter;
 
-    // let main = document.querySelector("main")
-    let overlay = document.getElementById("overlay")
-    let lightboxContainer = document.querySelector(".lightbox-container")
-    document.getElementById("photo-container").innerHTML=""
-    fetch(url)
-        .then(function (data) {
-            return data.json();
+//     // let main = document.querySelector("main")
+//     let overlay = document.getElementById("overlay")
+//     let lightboxContainer = document.querySelector(".lightbox-container")
+//     document.getElementById("photo-container").innerHTML=""
 
-        })
-        .then(function (data) {
-            console.log(data);
+
+
+//     // Fetch Data img
+//     fetch(url)
+//         .then(function (data) {
+//             return data.json();
+
+//         })
+//         .then(function (data) {
+//             console.log(data);
             
-            data.results.forEach(photo => {
-                // let result = `
-                //     <div class="photo">
-                //         <img src="${photo.urls.small}">
-                //     </div>`;
+//             data.results.forEach(photo => {
+               
+//                 let divPhoto = document.createElement("div")
+//                 divPhoto.setAttribute("class", "photo")
+//                 let nextImage = document.createElement("img")
+//                 nextImage.setAttribute("id", photo.id)
+//                 nextImage.setAttribute("src", photo.urls.thumb)
+//                 divPhoto.append(nextImage)
+//                 $("#photo-container").append(divPhoto);
 
-                // $("#photo-container").append(result);
-                let divPhoto = document.createElement("div")
-                divPhoto.setAttribute("class", "photo")
-                let nextImage = document.createElement("img")
-                nextImage.setAttribute("id", photo.id)
-                nextImage.setAttribute("src", photo.urls.thumb)
-                divPhoto.append(nextImage)
-                $("#photo-container").append(divPhoto);
+//                 document.getElementById(photo.id).addEventListener("click", event => {
+//                     overlay.style.display = "block"
+//                     lightboxContainer.style.display = "flex"
+//                     lightboxContainer.innerHTML =
+//                         `<div class="options">
+//                             <span class="download">Ladda Ner </span>
+//                             <span class="favorites">Lägg till Favoriter</span>
+//                         </div>
+//                         <img src=${photo.urls.small}>
+//                         <div class="author">
+//                             <img class="author-icon" src=${photo.user.profile_image.small}> 
+//                             ${photo.user.name}
+//                         </div>`
+//                 });
 
-                document.getElementById(photo.id).addEventListener("click", event => {
-                    overlay.style.display = "block"
-                    lightboxContainer.style.display = "flex"
-                    lightboxContainer.innerHTML =
-                        `<div class="options">
-                            <span class="download">Ladda Ner </span>
-                            <span class="favorites">Lägg till Favoriter</span>
-                        </div>
-                        <img src=${photo.urls.small}>
-                        <div class="author">
-                            <img class="author-icon" src=${photo.user.profile_image.small}> 
-                            ${photo.user.name}
-                        </div>`
-                });
-            })
-            overlay.addEventListener("click", event => {
-                lightboxContainer.style.display = "none"
-                overlay.style.display = "none";
-            })
-        })
-})
+//                 let btnPagination = document.createElement("div");
+//                 lightboxContainer.then(lightboxContainer).append(btnPagination).innerHTML = "<button>Caspar</button>"
+                
+//             })
+//             overlay.addEventListener("click", event => {
+//                 lightboxContainer.style.display = "none"
+//                 overlay.style.display = "none";
+//             })
+//         })
+// })
 
 
 
