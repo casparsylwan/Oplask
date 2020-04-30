@@ -75,6 +75,9 @@ header {
 .btn.main-search {
 	background: white;
 	border-radius: .8rem;
+	height: 100%;
+	margin: 0;
+	padding: 1rem;
 }
 
 .btn.main-search:hover {
