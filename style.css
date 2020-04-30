@@ -46,17 +46,47 @@ table {
 
 header {
 	background: rgb(250, 247, 247);
+	padding: .5rem;
+}
+
+.nav-header {
+	display: flex;
+	flex-direction: column;
 }
 
 .nav-top {
 	display: flex;
-	padding: 1rem 1rem 0 1rem;
+	padding: .8rem 1rem 0 1rem;
+}
+
+
+
+.logo {
+	margin: 0 .6rem 0 .3rem;
+}
+
+.main-search {
+	border-radius: .8rem;
+	border: solid black 1px;
+	margin: 0 .1rem;
+	text-align: center;
+}
+
+.btn.main-search {
+	background: white;
+	border-radius: .8rem;
+}
+
+.btn.main-search:hover {
+	background:  rgb(250, 247, 247);
 }
 
 .links {
 	display: flex;
 	justify-content: space-evenly;
 	padding: 1rem;
+	margin-top: .6rem;
+	font-weight: bolder;
 }
 
 .links li {
@@ -65,6 +95,13 @@ header {
 
 .links li a {
 	text-decoration: none;
+	color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	transition: color 1s;
+}
+
+.links li a:hover {
+	color: gray;
 }
 
 #overlay {
@@ -110,15 +147,18 @@ header {
 
 main {
 	margin: 2rem 0;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	
 }
 
 #photo-container {
 	display: grid;
 	justify-content: center;
-	gap: 40px;
+	gap: 1rem;
+}
+
+.photo {
+	display: grid;
+	justify-content: center;
 }
 
 .photo:hover{
@@ -145,6 +185,37 @@ main {
 	
 }
 
+.download {
+	text-decoration: none;
+	background: rgb(250, 247, 247);
+	color: black;
+	padding: 1rem;
+	border: solid gray .1rem;
+	margin-bottom: .5rem;
+	border-radius: .3rem;
+}
+
+.download:hover {
+	border-color: black;
+}
+
+.favorites {
+	background: rgb(250, 247, 247);
+	color: black;
+	padding: 1rem;
+	border: solid gray .1rem;
+	margin-bottom: .5rem;
+	border-radius: .3rem;
+}
+
+.favorites:hover {
+	border-color: black;
+}
+
+.author-icon {
+	margin-top: .9rem;
+}
+
 img{
 	max-height: 80vh;
 	max-width: 90vw;
@@ -163,5 +234,51 @@ img{
 .nav-down{
 	visibility:hidden;
 }
+
+@media screen and (min-width: 480px) {
+	#photo-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.nav-header {
+		display: flex;
+		flex-direction: row;
+	}
+	
+}
+
+@media screen and (min-width: 675px) {
+	#photo-container {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.logo {
+		margin: 0 2rem 0 .3rem;
+	}
+	
+	.main-search {
+		margin: 0 .1rem;
+		padding: 0 3rem;
+	}
+
+	.btn.main-search {
+		padding: 0 1rem;
+	}
+	
+}
+
+@media screen and (min-width: 1000px) {
+	#photo-container {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	#photo-container {
+		grid-template-columns: repeat(5, 1fr);
+		max-width: 1200px;
+		margin: auto;
+	}
+}
+
 
 
