@@ -1,11 +1,3 @@
-// for (let key in localStorage) {
-//     if (localStorage.hasOwnProperty(key)){
-//         const photo = localStorage[key];
-//         photoAdder(photo);
-//         enlargePhoto(photo);
-//     }
-//     console.log(a, ' = ', localStorage[a]);
-//  }
 
 //Variables
 const searchBtn = document.querySelector(".btn");
@@ -17,6 +9,7 @@ let navDown = document.querySelector(".nav-down");
 const overlay = document.getElementById("overlay");
 const lightboxContainer = document.querySelector(".lightbox-container");
 const favoritesList = document.getElementById("fav")
+let viewingFavorites = false;
 
 //Cashing variables
 caching = [];
@@ -29,12 +22,26 @@ let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8";
 let baseurl = "https://api.unsplash.com/search/photos/?client_id=";
 let query = "&query=";
 let page = "&page=";
-let keyWord = " ";
+let keyWord = ""; //Default search will be stockholm if nothing is choosen!
 let counter = 1;
 
+
 //EventListeners
+
+document.querySelector(".main-search").addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        viewingFavorites = false;
+        counter = 1;
+        keyWord = document.querySelector(".main-search").value || "stockholm";
+        pageChange();
+    }
+});
+
 searchBtn.addEventListener("click", function () {
-    this.counter = 1;
+    viewingFavorites = false;
+    counter = 1;
+    keyWord = document.querySelector(".main-search").value || "stockholm";
     pageChange();
 });
 
@@ -53,6 +60,7 @@ favoritesList.addEventListener("click", event => {
     counter = 1;
     navDown.style.visibility = "hidden";
     navUp.style.visibility = "hidden";
+    viewingFavorites = true;
     fillFavoritesView()
 
 
@@ -61,18 +69,8 @@ favoritesList.addEventListener("click", event => {
 //Main search function
 function pageChange() {
 
-    let keyWord = document.querySelector(".main-search").value;
-    let url;
+    let url = baseurl + key + query + keyWord + page + counter;
 
-    //Default search is stockholm if nothing is choosen!
-    if (keyWord === "") {
-
-        url = url = baseurl + key + query + "stockholm" + page + counter;
-
-    } else {
-
-        url = baseurl + key + query + keyWord + page + counter;
-    }
 
     photoContainer.innerHTML = "";
 
@@ -85,12 +83,11 @@ function pageChange() {
     });
 
     if (reduced.length > 0) {
-        
 
         navVisibility(reduced[0].data);
-        reduced[0].data.results.forEach(photo => { 
-            photoAdder(photo); 
-            enlargePhoto(photo) 
+        reduced[0].data.results.forEach(photo => {
+            photoAdder(photo);
+            enlargePhoto(photo)
         });
 
     } else {
@@ -166,28 +163,24 @@ function enlargePhoto(photo) {
         lightboxContainer.innerHTML =
 
             `<div class="options">
-                            <a class="download" href=${photo.links.download}?force=true>Ladda Ner </a>
-                            <div class="favorites">
-                                <span class="star-icon">&#9733;</span>
-                                <span class="favorites-text"></span>
-                                
-                            </div>
-                            <span onclick="closeLightBox()" class="close">X</span>
-                        </div>
-                        <img src=${photo.urls.small}>
-                        <div class="author">
-                            <img class="author-icon" src=${photo.user.profile_image.small}> 
-                            ${photo.user.name}
-                        </div>`;
+                <a class="download" href=${photo.links.download}?force=true>Ladda Ner</a>
+                <div class="favorites">
+                    <span class="star-icon">&#9733;</span>
+                    <span class="favorites-text"></span>          
+                </div>
+                <span onclick="closeLightBox()" class="close">X</span>
+            </div>
+            <img src=${photo.urls.small}>
+            <div class="author">
+                <img class="author-icon" src=${photo.user.profile_image.small}> 
+                ${photo.user.name}
+            </div>`;
         addOrRemoveFavorites(photo)
     });
 
 
 
-    overlay.addEventListener("click", event => {
-        lightboxContainer.style.display = "none"
-        overlay.style.display = "none";
-    })
+    overlay.addEventListener("click", closeLightBox)
 }
 
 function closeLightBox() {
@@ -211,13 +204,6 @@ function removeFromFavorite(id) {
 
     localStorage.removeItem(id);
 }
-
-//Not Used
-function removeAll() {
-
-    localStorage.clear();
-}
-
 
 //Favorites Functions
 function fillFavoritesView() {
@@ -243,29 +229,35 @@ function addOrRemoveFavorites(photo) {
 
 function addToFavoritesListener(photo) {
     let favorites = document.querySelector(".favorites")
-    favorites.querySelector(".favorites-text").innerText = " Lägg till Favorit"
+    favorites.querySelector(".favorites-text").innerText = "Lägg till Favorit"
 
     favorites.addEventListener("click", event => {
         document.querySelector(".star-icon").style.webkitTextFillColor = "yellow"
         addToFavorite(photo.id, photo)
         removeFromFavoritesListener(photo)
+        if (viewingFavorites) {
+            fillFavoritesView()
+        }
     })
 }
 
 function removeFromFavoritesListener(photo) {
     let favorites = document.querySelector(".favorites")
-    favorites.querySelector(".favorites-text").innerText = " Ta Bort Favorit"
+    favorites.querySelector(".favorites-text").innerText = "Ta Bort Favorit"
     favorites.addEventListener("click", event => {
         document.querySelector(".star-icon").style.webkitTextFillColor = "white"
         removeFromFavorite(photo.id)
         addToFavoritesListener(photo)
-        fillFavoritesView()
+        if (viewingFavorites) {
+            fillFavoritesView()
+        }
 
     })
 
 }
 
-//Not Used Where to use this?
-// function removePhotoFromFavoritesView(id) {
-//     document.getElementById(id).parentNode.remove();
+// Not Used
+// function removeAll() {
+
+//     localStorage.clear();
 // }
