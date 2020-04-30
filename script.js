@@ -127,7 +127,7 @@ function addOrRemoveFavorites(photo) {
 
 function addToFavoritesListener(photo) {
     let favorites = document.querySelector(".favorites")
-    favorites.querySelector(".favorites-text").innerText=" Lägg till Favoriter"
+    favorites.querySelector(".favorites-text").innerText=" Lägg till Favorit"
     
     favorites.addEventListener("click", event => {
         document.querySelector(".star-icon").style.webkitTextFillColor = "yellow"
@@ -138,7 +138,7 @@ function addToFavoritesListener(photo) {
 
 function removeFromFavoritesListener(photo) {
     let favorites = document.querySelector(".favorites")
-    favorites.querySelector(".favorites-text").innerText=" Ta Bort Favoriter"
+    favorites.querySelector(".favorites-text").innerText=" Ta Bort Favorit"
     favorites.addEventListener("click", event => {
         document.querySelector(".star-icon").style.webkitTextFillColor = "white"
         FAVORITES[photo.id] = ""

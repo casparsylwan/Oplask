@@ -77,6 +77,8 @@ header {
 }
 
 .lightbox-container {
+	max-width: 100vw;
+	max-height: 100vh;
 	position: fixed;
 	display: none;
 	top: 50%;
@@ -134,4 +136,9 @@ main {
 	flex-direction: row;
 	justify-content: space-between;
 	
+}
+
+img{
+	max-height: 70vh;
+	max-width: 90vw;
 }
