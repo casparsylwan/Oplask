@@ -27,9 +27,19 @@ let counter = 1;
 
 
 //EventListeners
+
+document.querySelector(".main-search").addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        viewingFavorites = false;
+        counter = 1;
+        pageChange();
+    }
+});
+
 searchBtn.addEventListener("click", function () {
     viewingFavorites = false;
-    this.counter = 1;
+    counter = 1;
     pageChange();
 });
 
@@ -161,19 +171,18 @@ function enlargePhoto(photo) {
         lightboxContainer.innerHTML =
 
             `<div class="options">
-                            <a class="download" href=${photo.links.download}?force=true>Ladda Ner </a>
-                            <div class="favorites">
-                                <span class="star-icon">&#9733;</span>
-                                <span class="favorites-text"></span>
-                                
-                            </div>
-                            <span onclick="closeLightBox()" class="close">X</span>
-                        </div>
-                        <img src=${photo.urls.small}>
-                        <div class="author">
-                            <img class="author-icon" src=${photo.user.profile_image.small}> 
-                            ${photo.user.name}
-                        </div>`;
+                <a class="download" href=${photo.links.download}?force=true>Ladda Ner</a>
+                <div class="favorites">
+                    <span class="star-icon">&#9733;</span>
+                    <span class="favorites-text"></span>          
+                </div>
+                <span onclick="closeLightBox()" class="close">X</span>
+            </div>
+            <img src=${photo.urls.small}>
+            <div class="author">
+                <img class="author-icon" src=${photo.user.profile_image.small}> 
+                ${photo.user.name}
+            </div>`;
         addOrRemoveFavorites(photo)
     });
 
@@ -235,7 +244,7 @@ function addOrRemoveFavorites(photo) {
 
 function addToFavoritesListener(photo) {
     let favorites = document.querySelector(".favorites")
-    favorites.querySelector(".favorites-text").innerText = " Lägg till Favorit"
+    favorites.querySelector(".favorites-text").innerText = "Lägg till Favorit"
 
     favorites.addEventListener("click", event => {
         document.querySelector(".star-icon").style.webkitTextFillColor = "yellow"
@@ -249,7 +258,7 @@ function addToFavoritesListener(photo) {
 
 function removeFromFavoritesListener(photo) {
     let favorites = document.querySelector(".favorites")
-    favorites.querySelector(".favorites-text").innerText = " Ta Bort Favorit"
+    favorites.querySelector(".favorites-text").innerText = "Ta Bort Favorit"
     favorites.addEventListener("click", event => {
         document.querySelector(".star-icon").style.webkitTextFillColor = "white"
         removeFromFavorite(photo.id)
