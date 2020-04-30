@@ -46,7 +46,26 @@ header {
 
 .nav-top {
 	display: flex;
-	padding: 1rem 1rem 0 1rem;
+	padding: .8rem 1rem 0 1rem;
+}
+
+.logo {
+	margin: 0 .6rem 0 .3rem;
+}
+
+.main-search {
+	border-radius: .8rem;
+	border: solid black 1px;
+	margin: 0 .1rem;
+}
+
+.btn.main-search {
+	background: white;
+	border-radius: .8rem;
+}
+
+.btn.main-search:hover {
+	background:  rgb(250, 247, 247);
 }
 
 .links {
@@ -61,12 +80,12 @@ header {
 
 .links li a {
 	text-decoration: none;
-	color: gray;
+	color: black;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
 .links li a:hover {
-	color: black;
+	color: gray;
 }
 
 #overlay {
@@ -172,6 +191,19 @@ main {
 	#photo-container {
 		grid-template-columns: repeat(3, 1fr);
 	}
+	.logo {
+		margin: 0 2rem 0 .3rem;
+	}
+	
+	.main-search {
+		margin: 0 .1rem;
+		padding: 0 3rem;
+	}
+
+	.btn.main-search {
+		padding: 0 1rem;
+	}
+	
 }
 
 @media screen and (min-width: 1000px) {
