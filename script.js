@@ -148,7 +148,7 @@ function pageChange() {
                     lightboxContainer.innerHTML =
                          `<div class="options">
                              <button class="btn download">Ladda Ner </button>
-                             <button class="btn favorites">Lägg till Favoriter</button>
+                             <button onclick="addToFavorite('${photo.user.name}', '${photo.user.profile_image.small}')" class="btn favorites">Lägg till Favoriter</button>
                          </div>
                         
                         <img src=${photo.urls.small}>
@@ -157,6 +157,7 @@ function pageChange() {
                     ${photo.user.name}
                     </div>`
                         });
+                   
                    
 
                         overlay.addEventListener("click", event => {
@@ -169,6 +170,7 @@ function pageChange() {
 
         function addToFavorite(name, photo){
 
+            console.log("added");
             localStorage.setItem( name,  photo );
         }
 
