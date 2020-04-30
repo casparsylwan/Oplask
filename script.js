@@ -104,7 +104,7 @@ function pageChange() {
         function navVisibility(data){
             
              //Navigations buttons visability depending on results!
-             if(data.total_pages<10){
+             if(data.total_pages<2){
 
                 navDown.style.visibility = "hidden";
                 navUp.style.visibility = "hidden";
