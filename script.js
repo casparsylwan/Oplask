@@ -22,7 +22,7 @@ let key = "jKd2ZB94SdKUyTDtS2iNreUUXUrYLXqqTPRIVgE-AO8";
 let baseurl = "https://api.unsplash.com/search/photos/?client_id=";
 let query = "&query=";
 let page = "&page=";
-let keyWord = " ";
+let keyWord = ""; //Default search will be stockholm if nothing is choosen!
 let counter = 1;
 
 
@@ -33,6 +33,7 @@ document.querySelector(".main-search").addEventListener("keyup", function (event
         event.preventDefault();
         viewingFavorites = false;
         counter = 1;
+        keyWord = document.querySelector(".main-search").value || "stockholm";
         pageChange();
     }
 });
@@ -40,6 +41,7 @@ document.querySelector(".main-search").addEventListener("keyup", function (event
 searchBtn.addEventListener("click", function () {
     viewingFavorites = false;
     counter = 1;
+    keyWord = document.querySelector(".main-search").value || "stockholm";
     pageChange();
 });
 
@@ -67,18 +69,8 @@ favoritesList.addEventListener("click", event => {
 //Main search function
 function pageChange() {
 
-    let keyWord = document.querySelector(".main-search").value;
-    let url;
+    let url = baseurl + key + query + keyWord + page + counter;
 
-    //Default search is stockholm if nothing is choosen!
-    if (keyWord === "") {
-
-        url = url = baseurl + key + query + "stockholm" + page + counter;
-
-    } else {
-
-        url = baseurl + key + query + keyWord + page + counter;
-    }
 
     photoContainer.innerHTML = "";
 
@@ -213,13 +205,6 @@ function removeFromFavorite(id) {
     localStorage.removeItem(id);
 }
 
-//Not Used
-function removeAll() {
-
-    localStorage.clear();
-}
-
-
 //Favorites Functions
 function fillFavoritesView() {
     photoContainer.innerHTML = ""
@@ -270,3 +255,9 @@ function removeFromFavoritesListener(photo) {
     })
 
 }
+
+// Not Used
+// function removeAll() {
+
+//     localStorage.clear();
+// }
