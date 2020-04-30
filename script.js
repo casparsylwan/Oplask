@@ -1,11 +1,3 @@
-// for (let key in localStorage) {
-//     if (localStorage.hasOwnProperty(key)){
-//         const photo = localStorage[key];
-//         photoAdder(photo);
-//         enlargePhoto(photo);
-//     }
-//     console.log(a, ' = ', localStorage[a]);
-//  }
 
 //Variables
 const searchBtn = document.querySelector(".btn");
@@ -17,6 +9,7 @@ let navDown = document.querySelector(".nav-down");
 const overlay = document.getElementById("overlay");
 const lightboxContainer = document.querySelector(".lightbox-container");
 const favoritesList = document.getElementById("fav")
+let viewingFavorites = false;
 
 //Cashing variables
 caching = [];
@@ -32,8 +25,10 @@ let page = "&page=";
 let keyWord = " ";
 let counter = 1;
 
+
 //EventListeners
 searchBtn.addEventListener("click", function () {
+    viewingFavorites = false;
     this.counter = 1;
     pageChange();
 });
@@ -53,6 +48,7 @@ favoritesList.addEventListener("click", event => {
     counter = 1;
     navDown.style.visibility = "hidden";
     navUp.style.visibility = "hidden";
+    viewingFavorites = true;
     fillFavoritesView()
 
 
@@ -85,12 +81,11 @@ function pageChange() {
     });
 
     if (reduced.length > 0) {
-        
 
         navVisibility(reduced[0].data);
-        reduced[0].data.results.forEach(photo => { 
-            photoAdder(photo); 
-            enlargePhoto(photo) 
+        reduced[0].data.results.forEach(photo => {
+            photoAdder(photo);
+            enlargePhoto(photo)
         });
 
     } else {
@@ -184,10 +179,7 @@ function enlargePhoto(photo) {
 
 
 
-    overlay.addEventListener("click", event => {
-        lightboxContainer.style.display = "none"
-        overlay.style.display = "none";
-    })
+    overlay.addEventListener("click", closeLightBox)
 }
 
 function closeLightBox() {
@@ -249,6 +241,9 @@ function addToFavoritesListener(photo) {
         document.querySelector(".star-icon").style.webkitTextFillColor = "yellow"
         addToFavorite(photo.id, photo)
         removeFromFavoritesListener(photo)
+        if (viewingFavorites) {
+            fillFavoritesView()
+        }
     })
 }
 
@@ -259,13 +254,10 @@ function removeFromFavoritesListener(photo) {
         document.querySelector(".star-icon").style.webkitTextFillColor = "white"
         removeFromFavorite(photo.id)
         addToFavoritesListener(photo)
-        fillFavoritesView()
+        if (viewingFavorites) {
+            fillFavoritesView()
+        }
 
     })
 
 }
-
-//Not Used Where to use this?
-// function removePhotoFromFavoritesView(id) {
-//     document.getElementById(id).parentNode.remove();
-// }
