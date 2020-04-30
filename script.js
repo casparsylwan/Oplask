@@ -170,7 +170,9 @@ function enlargePhoto(photo) {
                             <div class="favorites">
                                 <span class="star-icon">&#9733;</span>
                                 <span class="favorites-text"></span>
+                                
                             </div>
+                            <span onclick="closeLightBox()" class="close">X</span>
                         </div>
                         <img src=${photo.urls.small}>
                         <div class="author">
@@ -186,6 +188,11 @@ function enlargePhoto(photo) {
         lightboxContainer.style.display = "none"
         overlay.style.display = "none";
     })
+}
+
+function closeLightBox() {
+    lightboxContainer.style.display = "none";
+    overlay.style.display = "none";
 }
 
 //LocalStorage

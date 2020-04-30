@@ -75,6 +75,9 @@ header {
 .btn.main-search {
 	background: white;
 	border-radius: .8rem;
+	height: 100%;
+	margin: 0;
+	padding: 1rem;
 }
 
 .btn.main-search:hover {
@@ -132,7 +135,11 @@ header {
 	align-items: center;
 }
 
-.author, .download, .favorites {
+.close {
+	cursor: pointer;
+}
+
+.author, .download, .favorites, .close {
 	/* position: relative; */
 	padding-top: 1rem;
 	padding-bottom: 0.5rem;
@@ -185,7 +192,7 @@ main {
 	
 }
 
-.download {
+.download, .close {
 	text-decoration: none;
 	background: rgb(250, 247, 247);
 	color: black;
