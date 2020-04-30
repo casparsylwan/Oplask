@@ -135,7 +135,11 @@ header {
 	align-items: center;
 }
 
-.author, .download, .favorites {
+.close {
+	cursor: pointer;
+}
+
+.author, .download, .favorites, .close {
 	/* position: relative; */
 	padding-top: 1rem;
 	padding-bottom: 0.5rem;
@@ -188,7 +192,7 @@ main {
 	
 }
 
-.download {
+.download, .close {
 	text-decoration: none;
 	background: rgb(250, 247, 247);
 	color: black;
