@@ -42,12 +42,20 @@ table {
 
 header {
 	background: rgb(250, 247, 247);
+	padding: .5rem;
+}
+
+.nav-header {
+	display: flex;
+	flex-direction: column;
 }
 
 .nav-top {
 	display: flex;
 	padding: .8rem 1rem 0 1rem;
 }
+
+
 
 .logo {
 	margin: 0 .6rem 0 .3rem;
@@ -57,6 +65,7 @@ header {
 	border-radius: .8rem;
 	border: solid black 1px;
 	margin: 0 .1rem;
+	text-align: center;
 }
 
 .btn.main-search {
@@ -72,6 +81,8 @@ header {
 	display: flex;
 	justify-content: space-evenly;
 	padding: 1rem;
+	margin-top: .6rem;
+	font-weight: bolder;
 }
 
 .links li {
@@ -82,6 +93,7 @@ header {
 	text-decoration: none;
 	color: black;
 	font-family: Arial, Helvetica, sans-serif;
+	transition: color 1s;
 }
 
 .links li a:hover {
@@ -185,6 +197,12 @@ main {
 	#photo-container {
 		grid-template-columns: repeat(2, 1fr);
 	}
+
+	.nav-header {
+		display: flex;
+		flex-direction: row;
+	}
+	
 }
 
 @media screen and (min-width: 675px) {
